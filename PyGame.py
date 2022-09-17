@@ -16,29 +16,29 @@ pygame.display.set_caption('PowerPuffs')
 clock = pygame.time.Clock()  # Helps with time and controlling the frame rate
 test_font = pygame.font.Font('Pixeltype.ttf', 50)
 
-sky_surface = pygame.image.load('Sky.png').convert()
-ground_surface = pygame.image.load('ground.png').convert()
+sky_surface = pygame.image.load('./images/Sky.png').convert()
+ground_surface = pygame.image.load('./images/ground.png').convert()
 text_surface = test_font.render('PuffGirls', False, 'Black')
 
-mojo_jojo_surface = pygame.image.load('mojojojo.png')
+mojo_jojo_surface = pygame.image.load('./images/mojojojo.png')
 mojo_jojo_surface = pygame.transform.scale(mojo_jojo_surface, (120, 100)).convert_alpha()
 mojo_rect = mojo_jojo_surface.get_rect(bottomright=(600, 310))
 
-bubbles_surface = pygame.image.load('blue.png')
+bubbles_surface = pygame.image.load('./images/blue.png')
 bubbles_surface = pygame.transform.scale(bubbles_surface, (120, 120)).convert_alpha()
 bubbles_rect = bubbles_surface.get_rect(midbottom=(80, 400))
 bubbles_gravity = -15
 
-crushed_can_surface = pygame.image.load('crushedCan.png').convert_alpha()
+crushed_can_surface = pygame.image.load('./images/crushedCan.png').convert_alpha()
 crushed_can_surface = pygame.transform.scale(crushed_can_surface, (75, 75)).convert_alpha()
 crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(0, 800), 0))
 crushed_can_gravity = -5
 
-recyclingbin_surface = pygame.image.load('recyclingbin.png').convert_alpha()
+recyclingbin_surface = pygame.image.load('./images/recyclingbin.png').convert_alpha()
 recyclingbin_surface = pygame.transform.scale(recyclingbin_surface, (100, 100)).convert_alpha()
 recyclingbin_rect = recyclingbin_surface.get_rect(midbottom=(0, 250))
 
-trashcan_surface = pygame.image.load('trashcan.png').convert_alpha()
+trashcan_surface = pygame.image.load('./images/trashcan.png').convert_alpha()
 trashcan_surface = pygame.transform.scale(trashcan_surface, (75, 75)).convert_alpha()
 recyclingbin_rect = trashcan_surface.get_rect(midbottom=(800, 250))
 
