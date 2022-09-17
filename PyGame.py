@@ -139,6 +139,8 @@ while True:
             score += 1
             needCompost = False
 
+    #commit
+
 
     pygame.display.update()
     clock.tick(60) #tells the while loop to not run faster than 60
