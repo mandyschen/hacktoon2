@@ -1,6 +1,5 @@
 import math
-
-
+from gui import GameGUI
 import pygame, random
 from sys import exit  # exits code right after it runs
 
@@ -8,6 +7,10 @@ from pygame.examples.eventlist import font
 
 # starts and initiates pygames
 pygame.init()
+# Load and play background soundtrack
+gui = GameGUI()
+gui.start()
+gui.play_sound('game-soundtrack')
 
 # Create display surface (the screen players see)
 # screen = pygame.displat.set.mode((width, height))
