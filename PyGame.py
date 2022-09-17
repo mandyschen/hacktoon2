@@ -4,6 +4,8 @@ from sys import exit #exits code right after it runs
 #starts and initiates pygames
 pygame.init()
 
+print("testing commit")
+
 #Create display surface (the screen players see)
 #screen = pygame.displat.set.mode((width, height))
 screen = pygame.display.set_mode((800, 400))
