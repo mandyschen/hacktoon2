@@ -27,8 +27,13 @@ bubbles_velocity = 5
 
 crushed_can_surface = pygame.image.load('crushedCan.png').convert_alpha()
 crushed_can_surface = pygame.transform.scale(crushed_can_surface, (75, 75)).convert_alpha()
-crushed_can_rect = crushed_can_surface.get_rect(midbottom = (random.randrange(0, 800), 0))
-crushed_can_gravity = -5
+crushed_can_rect = crushed_can_surface.get_rect(midbottom = (random.randrange(50, 750), 0))
+crushed_can_gravity = -3
+
+cherry_surface = pygame.image.load('cherry.png').convert_alpha()
+cherry_surface = pygame.transform.scale(cherry_surface, (75, 75)).convert_alpha()
+cherry_rect = cherry_surface.get_rect(midbottom = (random.randrange(50, 750), random.randrange(-75, -50)))
+cherry_gravity = -3
 
 recyclingbin_surface = pygame.image.load('recyclingbin.png').convert_alpha()
 recyclingbin_surface = pygame.transform.scale(recyclingbin_surface, (100, 100)).convert_alpha()
@@ -39,7 +44,14 @@ trashcan_surface = pygame.transform.scale(trashcan_surface, (75, 75)).convert_al
 trashcan_rect = trashcan_surface.get_rect(midbottom = (800, 250))
 
 score = 0
+
+needRecycle = False
+needCompost = False
+torf = False
+
 #Keeps code running forever
+
+
 while True:
     pygame.display.set_caption(str(score))
     # Player input; Exit
@@ -77,8 +89,14 @@ while True:
     #crushed can
     crushed_can_rect.y += 2
     if crushed_can_rect.y > 300:
-        crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(0, 800), 0))
+        crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(50, 750), 0))
     screen.blit(crushed_can_surface, crushed_can_rect)
+
+    # cherry
+    cherry_rect.y += 1
+    if cherry_rect.y > 300:
+        cherry_rect = cherry_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
+    screen.blit(cherry_surface, cherry_rect)
 
    #bubbles
     bubbles_gravity += 1
@@ -94,8 +112,35 @@ while True:
     if bubbles_rect.colliderect(mojo_rect):
         print('collision')
 
+
+
     if bubbles_rect.colliderect(crushed_can_rect):
-        score += 1;
+        crushed_can_rect.y = 300
+        needRecycle = True
+
+    if bubbles_rect.colliderect(cherry_rect):
+        cherry_rect.y = 300
+        needCompost = True
+
+    if needRecycle:
+        recycle_surface = test_font.render('RECYCLE', False, 'Green')
+        screen.blit(recycle_surface, (50, 50))
+    if needCompost:
+        compost_surface = test_font.render('COMPOST', False, 'Brown')
+        screen.blit(compost_surface, (600, 50))
+
+    if needRecycle == True:
+        if bubbles_rect.colliderect(recyclingbin_rect):
+            score += 1
+            needRecycle = False
+
+    if needCompost == True:
+        if bubbles_rect.colliderect(trashcan_rect):
+            score += 1
+            needCompost = False
+
 
     pygame.display.update()
     clock.tick(60) #tells the while loop to not run faster than 60
+
+
