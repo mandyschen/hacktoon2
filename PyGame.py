@@ -10,6 +10,9 @@ screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption('PowerPuffs')
 clock = pygame.time.Clock() #Helps with time and controlling the frame rate
 test_font = pygame.font.Font('Pixeltype.ttf', 50)
+y = 310
+
+direction = pygame.math.Vector2()
 
 sky_surface = pygame.image.load('Sky.png').convert()
 ground_surface = pygame.image.load('ground.png').convert()
@@ -21,11 +24,13 @@ mojo_rect = mojo_jojo_surface.get_rect(bottomright = (600,310))
 
 bubbles_surface = pygame.image.load('blue.png').convert_alpha()
 bubbles_surface = pygame.transform.scale(bubbles_surface, (120,120)).convert_alpha()
-bubbles_rect = bubbles_surface.get_rect(midbottom = (80,310))
+bubbles_rect = bubbles_surface.get_rect(midbottom = (80,y))
 bubbles_gravity = -15
+running = True
+#player_running = 0
 
 #Keeps code running forever
-while True:
+while running:
     # Player input; Exit
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -33,12 +38,23 @@ while True:
             exit()
       # if event.type == pygame.MOUSEMOTION:
         # if   bubbles_rect.collidepoint(event.pos): print('collision')
+
+        # player movement
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 bubbles_gravity = -20
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_a:
+                bubbles_rect.x += -100
 
- # places image ontop of display surface
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_d:
+                bubbles_rect.x += 100
+
+
+
+    # places image ontop of display surface
     # anything in this while loop will be displayed to the player
     screen.blit(sky_surface, (0, 0))
     screen.blit(ground_surface, (0,300))
