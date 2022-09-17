@@ -23,6 +23,7 @@ bubbles_surface = pygame.image.load('blue.png')
 bubbles_surface = pygame.transform.scale(bubbles_surface, (120,120)).convert_alpha()
 bubbles_rect = bubbles_surface.get_rect(midbottom = (80,310))
 bubbles_gravity = -15
+bubbles_velocity = 5
 
 crushed_can_surface = pygame.image.load('crushedCan.png').convert_alpha()
 crushed_can_surface = pygame.transform.scale(crushed_can_surface, (75, 75)).convert_alpha()
@@ -35,7 +36,7 @@ recyclingbin_rect = recyclingbin_surface.get_rect(midbottom = (0, 250))
 
 trashcan_surface = pygame.image.load('trashcan.png').convert_alpha()
 trashcan_surface = pygame.transform.scale(trashcan_surface, (75, 75)).convert_alpha()
-recyclingbin_rect = trashcan_surface.get_rect(midbottom = (800, 250))
+trashcan_rect = trashcan_surface.get_rect(midbottom = (800, 250))
 
 score = 0
 #Keeps code running forever
@@ -51,10 +52,15 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 bubbles_gravity = -20
-            # if event.key == pygame.K_LEFT:
-            #     bubbles_rect.x -= 20
-            # if event.key == pygame.K_RIGHT:
-            #     bubbles_rect.x += 20
+            if event.key == pygame.K_LEFT:
+                bubbles_velocity = bubbles_velocity - 5
+            if event.key == pygame.K_RIGHT:
+                bubbles_velocity = bubbles_velocity + 5
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT:
+                bubbles_velocity = 0
+            if event.key == pygame.K_RIGHT:
+                bubbles_velocity = 0
 
     # places image ontop of display surface
     # anything in this while loop will be displayed to the player
@@ -77,8 +83,13 @@ while True:
    #bubbles
     bubbles_gravity += 1
     bubbles_rect.y += bubbles_gravity
+    bubbles_rect.x += bubbles_velocity
+    if bubbles_rect.x < 0:
+        bubbles_rect.x = 0
+    elif bubbles_rect.x > 700:
+        bubbles_rect.x = 700
     if bubbles_rect.bottom >= 300: bubbles_rect.bottom = 315
-    screen.blit(bubbles_surface, (bubbles_rect))
+    screen.blit(bubbles_surface, bubbles_rect)
 
     if bubbles_rect.colliderect(mojo_rect):
         print('collision')
