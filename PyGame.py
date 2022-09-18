@@ -55,145 +55,158 @@ trashcan_rect = trashcan_surface.get_rect(midbottom = (800, 250))
 
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 
-score = 0
+
+def playAgain():
+
+    score = 0
 
 
-def isCollision(x1, y1, x2, y2):
-    distance = math.sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
-    if distance < 27:
-        return True
+    def isCollision(x1, y1, x2, y2):
+        distance = math.sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
+        if distance < 27:
+            return True
 
-needRecycle = False
-needCompost = False
-torf = False
-recycleAmount = 0
-compostAmount = 0
-speed = 1
+    needRecycle = False
+    needCompost = False
+    torf = False
+    recycleAmount = 0
+    compostAmount = 0
+    speed = 1
 
-# Keeps code running forever
-while True:
-    pygame.display.set_caption(str(score))
-    # Player input; Exit
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()  # opposite of init(); closes pygame
-            exit()
+    # Keeps code running forever
+    while True:
+        pygame.display.set_caption(str(score))
+        # Player input; Exit
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()  # opposite of init(); closes pygame
+                exit()
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                if bubbles_rect.y == 195:
-                    bubbles_gravity = -20
-                elif bubbles_rect.y < 75:
-                    bubbles_gravity = -10
-            if event.key == pygame.K_LEFT:
-                bubbles_velocity = bubbles_velocity - 5
-            if event.key == pygame.K_RIGHT:
-                bubbles_velocity = bubbles_velocity + 5
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT:
-                bubbles_velocity = 0
-            if event.key == pygame.K_RIGHT:
-                bubbles_velocity = 0
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    if bubbles_rect.y == 195:
+                        bubbles_gravity = -20
+                    elif bubbles_rect.y < 75:
+                        bubbles_gravity = -10
+                if event.key == pygame.K_LEFT:
+                    bubbles_velocity = bubbles_velocity - 5
+                if event.key == pygame.K_RIGHT:
+                    bubbles_velocity = bubbles_velocity + 5
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT:
+                    bubbles_velocity = 0
+                if event.key == pygame.K_RIGHT:
+                    bubbles_velocity = 0
 
-    # places image ontop of display surface
-    # anything in this while loop will be displayed to the player
-    screen.blit(sky_surface, (0, 0))
-    screen.blit(ground_surface, (0, 300))
-    screen.blit(text_surface, (300, 50))
-    screen.blit(recyclingbin_surface, (0, 230))
-    screen.blit(trashcan_surface, (700, 230))
-
-
-
-    mojo_rect.x -= speed * 2
-    if mojo_rect.right <= 0: mojo_rect.left = 800
-    screen.blit(mojo_jojo_surface, mojo_rect)
-
-    # crushed can
-    crushed_can_rect.y += speed
-    if crushed_can_rect.y > 300:
-        crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(50, 750), 0))
-    screen.blit(crushed_can_surface, crushed_can_rect)
-
-    # cherry
-    cherry_rect.y += speed
-    if cherry_rect.y > 300:
-        cherry_rect = cherry_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
-    screen.blit(cherry_surface, cherry_rect)
-
-    # bubbles
-    bubbles_gravity += 1
-    bubbles_rect.y += bubbles_gravity
-    bubbles_rect.x += bubbles_velocity
-    if bubbles_rect.x < 0:
-        bubbles_rect.x = 0
-    elif bubbles_rect.x > 700:
-        bubbles_rect.x = 700
-    if bubbles_rect.bottom >= 300: bubbles_rect.bottom = 315
-    screen.blit(bubbles_surface, bubbles_rect)
-
-    if bubbles_rect.colliderect(crushed_can_rect):
-        crushed_can_rect.y = 300
-        needRecycle = True
-        recycleAmount += 1
-
-    if bubbles_rect.colliderect(cherry_rect):
-        cherry_rect.y = 300
-        needCompost = True
-        compostAmount += 1
-
-    if needRecycle:
-        recycle_surface = test_font.render('RECYCLE', False, 'Green')
-        screen.blit(recycle_surface, (50, 50))
-    if needCompost:
-        compost_surface = test_font.render('COMPOST', False, 'Brown')
-        screen.blit(compost_surface, (600, 50))
-
-    if needRecycle == True:
-        if bubbles_rect.colliderect(recyclingbin_rect):
-            score += recycleAmount
-            recycleAmount = 0
-            needRecycle = False
-
-    if needCompost == True:
-        if bubbles_rect.colliderect(trashcan_rect):
-            score += compostAmount
-            compostAmount = 0
-            needCompost = False
+        # places image ontop of display surface
+        # anything in this while loop will be displayed to the player
+        screen.blit(sky_surface, (0, 0))
+        screen.blit(ground_surface, (0, 300))
+        screen.blit(text_surface, (300, 50))
+        screen.blit(recyclingbin_surface, (0, 230))
+        screen.blit(trashcan_surface, (700, 230))
 
 
-    if score > 20:
-        speed = 2
-    elif score > 30:
-        speed = 3
-    elif score > 40:
-        speed = 4
-    elif score > 50:
-        speed = 5
-    elif score > 60:
-        speed = 6
-    elif score > 70:
-        speed = 7
-    elif score > 80:
-        speed = 8
-    elif score > 90:
-        speed = 9
-    elif score > 100:
-        speed = 10
 
-    if (isCollision(bubbles_rect.x, bubbles_rect.y, mojo_rect.x, mojo_rect.y)):
-        clock.tick(0)
-        break
+        mojo_rect.x -= speed * 2
+        if mojo_rect.right <= 0: mojo_rect.left = 800
+        screen.blit(mojo_jojo_surface, mojo_rect)
 
-    pygame.display.update()
-    clock.tick(60) #tells the while loop to not run faster than 60
+        # crushed can
+        crushed_can_rect.y += speed
+        if crushed_can_rect.y > 300:
+            crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(50, 750), 0))
+        screen.blit(crushed_can_surface, crushed_can_rect)
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()  # opposite of init(); closes pygame
-            exit()
-    over_text = over_font.render("GAME OVER", True, (255, 255, 255))
-    screen.blit(over_text, (200, 200))
-    pygame.display.update()
-    clock.tick(60)
+        # cherry
+        cherry_rect.y += speed
+        if cherry_rect.y > 300:
+            cherry_rect = cherry_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
+        screen.blit(cherry_surface, cherry_rect)
+
+        # bubbles
+        bubbles_gravity += 1
+        bubbles_rect.y += bubbles_gravity
+        bubbles_rect.x += bubbles_velocity
+        if bubbles_rect.x < 0:
+            bubbles_rect.x = 0
+        elif bubbles_rect.x > 700:
+            bubbles_rect.x = 700
+        if bubbles_rect.bottom >= 300: bubbles_rect.bottom = 315
+        screen.blit(bubbles_surface, bubbles_rect)
+
+        if bubbles_rect.colliderect(crushed_can_rect):
+            crushed_can_rect.y = 300
+            needRecycle = True
+            recycleAmount += 1
+
+        if bubbles_rect.colliderect(cherry_rect):
+            cherry_rect.y = 300
+            needCompost = True
+            compostAmount += 1
+
+        if needRecycle:
+            recycle_surface = test_font.render('RECYCLE', False, 'Green')
+            screen.blit(recycle_surface, (50, 50))
+        if needCompost:
+            compost_surface = test_font.render('COMPOST', False, 'Brown')
+            screen.blit(compost_surface, (600, 50))
+
+        if needRecycle == True:
+            if bubbles_rect.colliderect(recyclingbin_rect):
+                score += recycleAmount
+                recycleAmount = 0
+                needRecycle = False
+
+        if needCompost == True:
+            if bubbles_rect.colliderect(trashcan_rect):
+                score += compostAmount
+                compostAmount = 0
+                needCompost = False
+
+
+        if score > 20:
+            speed = 2
+        elif score > 30:
+            speed = 3
+        elif score > 40:
+            speed = 4
+        elif score > 50:
+            speed = 5
+        elif score > 60:
+            speed = 6
+        elif score > 70:
+            speed = 7
+        elif score > 80:
+            speed = 8
+        elif score > 90:
+            speed = 9
+        elif score > 100:
+            speed = 10
+
+        if (isCollision(bubbles_rect.x, bubbles_rect.y, mojo_rect.x, mojo_rect.y)):
+            clock.tick(0)
+            break
+
+        pygame.display.update()
+        clock.tick(60) #tells the while loop to not run faster than 60
+
+    while True:
+        mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                # playAgain = False
+                pygame.quit()  # opposite of init(); closes pygame
+                # exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if 0 <= mouse[0] <= 400 and 0 <= mouse[1] <= 800:
+                    # pygame.draw.rect(screen, 'Blue', 150, 400, 250, 500)
+                    # playAgain = True
+                    playAgain()
+        text = over_font.render('PLAY AGAIN?' , True , 'Black')
+        screen.blit(text, (200, 260))
+        pygame.display.update()
+        over_text = over_font.render("GAME OVER", True, (255, 255, 255))
+        screen.blit(over_text, (200, 200))
+        pygame.display.update()
+        clock.tick(60)
