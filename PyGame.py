@@ -4,27 +4,31 @@ from gui import GameGUI
 import pygame, random
 from sys import exit  # exits code right after it runs
 
+from pygame.examples.eventlist import font
+
 # starts and initiates pygames
 pygame.init()
 
 screen = pygame.display.set_mode((800, 400))
-pygame.display.set_caption('PowerPuffs')
+pygame.display.set_caption('Eco Puffs: Mission (not) Impossible')
 clock = pygame.time.Clock()  # Helps with time and controlling the frame rate
 test_font = pygame.font.Font('Pixeltype.ttf', 50)
+
 
 # Load and play background soundtrack
 gui = GameGUI()
 gui.start()
 gui.play_sound('game-soundtrack')
 
+# Create display surface (the screen players see)
+# screen = pygame.displat.set.mode((width, height))
+
+
 def playAgain():
-
-
-    # Create display surface (the screen players see)
-    # screen = pygame.display.set.mode((width, height))
 
     sky_surface = pygame.image.load('./images/Sky.png').convert()
     ground_surface = pygame.image.load('./images/ground.png').convert()
+
 
     mojo_jojo_surface = pygame.image.load('./images/mojojojo.png')
     mojo_jojo_surface = pygame.transform.scale(mojo_jojo_surface, (120, 100)).convert_alpha()
@@ -97,6 +101,8 @@ def playAgain():
                 pygame.quit()  # opposite of init(); closes pygame
                 exit()
 
+
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE or event.key == pygame.K_UP or event.key == pygame.K_w:
                     if bubbles_rect.y == 195:
@@ -145,7 +151,7 @@ def playAgain():
         screen.blit(recyclingbin_surface, (0, 230))
         screen.blit(trashcan_surface, (700, 230))
 
-        scoreboard = over_font.render(("Score:" + str(score)), True, (255, 255, 255))
+        scoreboard = test_font.render(("Score:" + str(score)), True, (255, 255, 255))
         screen.blit(scoreboard, (300, 345))
 
         mojo_rect.x -= speed * 2
@@ -205,8 +211,8 @@ def playAgain():
 
         if bubbles_rect.colliderect(paper_rect):
             paper_rect.y = 300
-            needCompost = True
-            compostAmount += 1
+            needRecycle = True
+            recycleAmount += 1
 
         if needRecycle:
             recycle_surface = test_font.render('RECYCLE', False, 'Green')
@@ -226,6 +232,7 @@ def playAgain():
                 score += compostAmount
                 compostAmount = 0
                 needCompost = False
+
 
         if score > 30:
             speed = 2

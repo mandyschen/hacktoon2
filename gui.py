@@ -19,8 +19,12 @@ class GameGUI:
         self.sounds = {}
         for sound_file in glob.glob(f".{DIR_CHAR}sounds{DIR_CHAR}*.mp3"):
             sound = pygame.mixer.Sound(sound_file)
+            sound.set_volume(0.1)
             self.sounds[sound_file] = sound
 
 
     def play_sound(self, sound):
-        self.sounds[f'.{DIR_CHAR}sounds{DIR_CHAR}{sound}.mp3'].play(-1)
+        if sound == "game-soundtrack":
+            self.sounds[f'.{DIR_CHAR}sounds{DIR_CHAR}{sound}.mp3'].play(-1)
+        else:
+            self.sounds[f'.{DIR_CHAR}sounds{DIR_CHAR}{sound}.mp3'].play()
