@@ -35,15 +35,29 @@ bubbles_rect = bubbles_surface.get_rect(midbottom = (80,310))
 bubbles_gravity = -15
 bubbles_velocity = 5
 
+# Recycling items
+
 crushed_can_surface = pygame.image.load('./images/crushedCan.png').convert_alpha()
 crushed_can_surface = pygame.transform.scale(crushed_can_surface, (75, 75)).convert_alpha()
 crushed_can_rect = crushed_can_surface.get_rect(midbottom = (random.randrange(50, 750), 0))
-crushed_can_gravity = -3
+crushed_can_gravity = -1
 
-cherry_surface = pygame.image.load('cherry.png').convert_alpha()
+paper_surface = pygame.image.load('./images/paper.png').convert_alpha()
+paper_surface = pygame.transform.scale(paper_surface, (60, 60)).convert_alpha()
+paper_rect = paper_surface.get_rect(midbottom = (random.randrange(50, 750), random.randrange(-75, -50)))
+paper_gravity = -3
+
+# Trash items
+
+cherry_surface = pygame.image.load('./images/cherry.png').convert_alpha()
 cherry_surface = pygame.transform.scale(cherry_surface, (75, 75)).convert_alpha()
 cherry_rect = cherry_surface.get_rect(midbottom = (random.randrange(50, 750), random.randrange(-75, -50)))
-cherry_gravity = -3
+cherry_gravity = -1
+
+bananapeel_surface = pygame.image.load('./images/bananapeel.png').convert_alpha()
+bananapeel_surface = pygame.transform.scale(bananapeel_surface, (75, 75)).convert_alpha()
+bananapeel_rect = bananapeel_surface.get_rect(midbottom = (random.randrange(50, 750), random.randrange(-75, -50)))
+bananapeel_gravity = -3
 
 recyclingbin_surface = pygame.image.load('./images/recyclingbin.png').convert_alpha()
 recyclingbin_surface = pygame.transform.scale(recyclingbin_surface, (100, 100)).convert_alpha()
@@ -110,7 +124,7 @@ while True:
     screen.blit(mojo_jojo_surface, mojo_rect)
 
     # crushed can
-    crushed_can_rect.y += speed
+    crushed_can_rect.y += 2
     if crushed_can_rect.y > 300:
         crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(50, 750), 0))
     screen.blit(crushed_can_surface, crushed_can_rect)
@@ -120,6 +134,18 @@ while True:
     if cherry_rect.y > 300:
         cherry_rect = cherry_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
     screen.blit(cherry_surface, cherry_rect)
+
+    # bananapeel
+    bananapeel_rect.y += 2
+    if bananapeel_rect.y > 300:
+        bananapeel_rect = bananapeel_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
+    screen.blit(bananapeel_surface, bananapeel_rect)
+
+    # paper
+    paper_rect.y += speed
+    if paper_rect.y > 300:
+        paper_rect = paper_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
+    screen.blit(paper_surface, paper_rect)
 
     # bubbles
     bubbles_gravity += 1
@@ -139,6 +165,16 @@ while True:
 
     if bubbles_rect.colliderect(cherry_rect):
         cherry_rect.y = 300
+        needCompost = True
+        compostAmount += 1
+
+    if bubbles_rect.colliderect(bananapeel_rect):
+        bananapeel_rect.y = 300
+        needCompost = True
+        compostAmount += 1
+
+    if bubbles_rect.colliderect(paper_rect):
+        paper_rect.y = 300
         needCompost = True
         compostAmount += 1
 
@@ -162,23 +198,23 @@ while True:
             needCompost = False
 
 
-    if score > 20:
+    if score > 30:
         speed = 2
-    elif score > 30:
-        speed = 3
     elif score > 40:
-        speed = 4
+        speed = 3
     elif score > 50:
-        speed = 5
-    elif score > 60:
-        speed = 6
+        speed = 4
     elif score > 70:
-        speed = 7
+        speed = 5
     elif score > 80:
-        speed = 8
-    elif score > 90:
-        speed = 9
+        speed = 6
     elif score > 100:
+        speed = 7
+    elif score > 120:
+        speed = 8
+    elif score > 130:
+        speed = 9
+    elif score > 150:
         speed = 10
 
     if (isCollision(bubbles_rect.x, bubbles_rect.y, mojo_rect.x, mojo_rect.y)):
