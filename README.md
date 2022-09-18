@@ -19,6 +19,8 @@ _A simple, yet intuitive and effective game in educating everyone about sustaina
 ### Visuals
 **Menu Screen**
 
+![image](https://user-images.githubusercontent.com/68432655/190905054-2757ff47-aa7e-4c35-aa43-0b4f98620f02.png)
+
 **Game screen**
 
 ![gameinterface](https://user-images.githubusercontent.com/68432655/190902034-82dc04b5-8549-4ddf-8c3b-d7aa9c008718.png)
