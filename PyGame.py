@@ -80,7 +80,7 @@ while True:
             exit()
 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
                 if bubbles_rect.y == 195:
                     bubbles_gravity = -20
                 elif bubbles_rect.y < 75:
