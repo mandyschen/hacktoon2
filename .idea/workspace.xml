@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2aa12bc6-c797-4f83-9ab0-281b92e502c0" name="Changes" comment="Menu Changes">
-      <change afterPath="$PROJECT_DIR$/images/background2puff.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/background2puff_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyGame.py" afterDir="false" />
-    </list>
+    <list default="true" id="2aa12bc6-c797-4f83-9ab0-281b92e502c0" name="Changes" comment="Menu Changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ToolWindowRun.ShowToolbar": "false",
     "last_opened_file_path": "C:/Users/afors/OneDrive/Documents/GitHub/hacktoon2/images"
   }
 }]]></component>
@@ -162,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663505394715</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Menu Changes">
+      <created>1663506766176</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1663506766176</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

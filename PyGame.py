@@ -98,7 +98,7 @@ def playAgain():
                 exit()
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
+                if event.key == pygame.K_SPACE or event.key == pygame.K_UP or event.key == pygame.K_w:
                     if bubbles_rect.y == 195:
                         bubbles_gravity = -20
                     elif bubbles_rect.y - 20 > 10:
@@ -118,12 +118,12 @@ def playAgain():
                     bubbles_surface = pygame.transform.scale(bubbles_surface, (90, 100)).convert_alpha()
                     facingRight = True
                     color = 'green'
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                     bubbles_velocity = bubbles_velocity - 5
                     if facingRight == True:
                         bubbles_surface = pygame.transform.flip(bubbles_surface, True, False)
                         facingRight = False
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     bubbles_velocity = bubbles_velocity + 5
                     if facingRight == False:
                         bubbles_surface = pygame.transform.flip(bubbles_surface, True, False)
@@ -132,6 +132,10 @@ def playAgain():
                 if event.key == pygame.K_LEFT:
                     bubbles_velocity = 0
                 if event.key == pygame.K_RIGHT:
+                    bubbles_velocity = 0
+                if event.key == pygame.K_a:
+                    bubbles_velocity = 0
+                if event.key == pygame.K_d:
                     bubbles_velocity = 0
 
         # places image ontop of display surface
