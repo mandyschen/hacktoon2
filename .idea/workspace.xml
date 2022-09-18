@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2aa12bc6-c797-4f83-9ab0-281b92e502c0" name="Changes" comment="Character selection">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2aa12bc6-c797-4f83-9ab0-281b92e502c0" name="Changes" comment="play again feature">
+      <change afterPath="$PROJECT_DIR$/sounds/game-over-sound.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyGame.py" afterDir="false" />
     </list>
@@ -44,6 +44,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sounds" />
       <recent name="$PROJECT_DIR$/images" />
     </key>
   </component>
@@ -81,6 +82,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.PyGame" />
         <item itemvalue="Python.PyGame" />
       </list>
     </recent_temporary>
