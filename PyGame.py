@@ -180,8 +180,8 @@ def playAgain():
 
         if bubbles_rect.colliderect(paper_rect):
             paper_rect.y = 300
-            needCompost = True
-            compostAmount += 1
+            needRecycle = True
+            recycleAmount += 1
 
         if needRecycle:
             recycle_surface = test_font.render('RECYCLE', False, 'Green')
@@ -237,6 +237,7 @@ def playAgain():
             if event.type == pygame.QUIT:
                 pygame.quit()  # opposite of init(); closes pygame
                 exit()
+        gui.play_sound('game-over-sound')
         text = test_font.render('(PRESS SPACE TO PLAY AGAIN)' , True , 'White')
         screen.blit(text, (200, 260))
         pygame.display.update()
@@ -244,6 +245,5 @@ def playAgain():
         screen.blit(over_text, (200, 200))
         pygame.display.update()
         clock.tick(60)
-       
 playAgain()
 
