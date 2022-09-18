@@ -121,7 +121,7 @@ def playAgain():
         screen.blit(recyclingbin_surface, (0, 230))
         screen.blit(trashcan_surface, (700, 230))
 
-        scoreboard = over_font.render(("Score:" + str(score)), True, (255, 255, 255))
+        scoreboard = test_font.render(("Score:" + str(score)), True, (255, 255, 255))
         screen.blit(scoreboard, (300, 345))
 
         mojo_rect.x -= speed * 2
