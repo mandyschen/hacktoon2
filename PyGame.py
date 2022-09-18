@@ -1,8 +1,6 @@
-import math
-
-from gui import GameGUI
 import pygame, random
-from sys import exit  # exits code right after it runs
+from gui import GameGUI
+from sys import exit #exits code right after it runs
 
 from pygame.examples.eventlist import font
 
@@ -78,11 +76,11 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()  # opposite of init(); closes pygame
             exit()
-        # if event.type == pygame.MOUSEMOTION:
-        # if   bubbles_rect.collidepoint(event.pos): print('collision')
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                bubbles_gravity = -20
+                if bubbles_rect.y == 195:
+                    bubbles_gravity = -20
             if event.key == pygame.K_LEFT:
                 bubbles_velocity = bubbles_velocity - 5
             if event.key == pygame.K_RIGHT:
@@ -100,8 +98,6 @@ while True:
     screen.blit(text_surface, (300, 50))
     screen.blit(recyclingbin_surface, (0, 230))
     screen.blit(trashcan_surface, (700, 230))
-
-
 
     mojo_rect.x -= 2
     if mojo_rect.right <= 0: mojo_rect.left = 800
@@ -158,15 +154,21 @@ while True:
             needCompost = False
 
 
-    pygame.display.update()
-    clock.tick(60) #tells the while loop to not run faster than 60
+    if (isCollision(bubbles_rect.x, bubbles_rect.y, mojo_rect.x, mojo_rect.y)):
+        active = False
+        clock.tick(0)
+        break
 
-# while True:
-#     for event in pygame.event.get():
-#         if event.type == pygame.QUIT:
-#             pygame.quit()  # opposite of init(); closes pygame
-#             exit()
-#     over_text = over_font.render("GAME OVER", True, (255, 255, 255))
-#     screen.blit(over_text, (200, 200))
-#     pygame.display.update()
-#     clock.tick(60)
+    if(active):
+        pygame.display.update()
+        clock.tick(60)  # tells the while loop to not run faster than 60
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()  # opposite of init(); closes pygame
+            exit()
+    over_text = over_font.render("GAME OVER", True, (255, 255, 255))
+    screen.blit(over_text, (200, 200))
+    pygame.display.update()
+    clock.tick(60)
