@@ -71,6 +71,7 @@ torf = False
 
 # Keeps code running forever
 while True:
+    print(bubbles_rect.y)
     pygame.display.set_caption(str(score))
     # Player input; Exit
     for event in pygame.event.get():
@@ -82,6 +83,8 @@ while True:
             if event.key == pygame.K_SPACE:
                 if bubbles_rect.y == 195:
                     bubbles_gravity = -20
+                elif bubbles_rect.y < 50:
+                    bubbles_gravity = -10
             if event.key == pygame.K_LEFT:
                 bubbles_velocity = bubbles_velocity - 5
             if event.key == pygame.K_RIGHT:
