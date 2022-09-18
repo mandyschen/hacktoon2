@@ -44,7 +44,7 @@ def playAgain():
     crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(50, 750), 0))
     crushed_can_gravity = -3
 
-    cherry_surface = pygame.image.load('cherry.png').convert_alpha()
+    cherry_surface = pygame.image.load('./images/cherry.png').convert_alpha()
     cherry_surface = pygame.transform.scale(cherry_surface, (75, 75)).convert_alpha()
     cherry_rect = cherry_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
     cherry_gravity = -3
