@@ -257,6 +257,7 @@ def playAgain():
             if event.type == pygame.QUIT:
                 pygame.quit()  # opposite of init(); closes pygame
                 exit()
+        gui.play_sound('game-over-sound')
         text = test_font.render('(PRESS SPACE TO PLAY AGAIN)', True, 'White')
         screen.blit(text, (200, 260))
         pygame.display.update()
@@ -266,6 +267,7 @@ def playAgain():
         clock.tick(60)
 
 while True:
+    title_font = pygame.font.Font('Pixeltype.ttf', 75)
     intro_font = pygame.font.Font('Pixeltype.ttf', 33)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -274,14 +276,20 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 playAgain()
+        title = title_font.render('EcoPuffs', True, 'White')
+        screen.blit(title, (250, 10))
         intro1 = intro_font.render('Blossom, Bubbles, and Buttercup are The Powerpuff Girls!', True, 'White')
         intro2 = intro_font.render('These little girls are motivated with one mission: saving the world before bedtime! ', True, 'White')
         intro3 = intro_font.render('And this time, they look outside their window to see trash polluting the town of ', True, 'White')
         intro4 = intro_font.render('Townsville...it’s time for saving.', True, 'White')
         intro5 = intro_font.render('Press SPACE to Continue', True, 'White')
-        screen.blit(intro1, (0, 10))
-        screen.blit(intro2, (0, 40))
-        screen.blit(intro3, (0, 70))
-        screen.blit(intro4, (0, 100))
-        screen.blit(intro5, (0, 200))
+        screen.blit(intro1, (0, 60))
+        screen.blit(intro2, (0, 90))
+        screen.blit(intro3, (0, 120))
+        screen.blit(intro4, (0, 150))
+        screen.blit(intro5, (0, 250))
         pygame.display.update()
+
+
+
+
