@@ -23,7 +23,7 @@ test_font = pygame.font.Font('Pixeltype.ttf', 50)
 
 sky_surface = pygame.image.load('./images/Sky.png').convert()
 ground_surface = pygame.image.load('./images/ground.png').convert()
-text_surface = test_font.render('PuffGirls', False, 'Black')
+
 
 mojo_jojo_surface = pygame.image.load('./images/mojojojo.png')
 mojo_jojo_surface = pygame.transform.scale(mojo_jojo_surface, (120, 100)).convert_alpha()
@@ -74,7 +74,7 @@ score = 0
 
 def isCollision(x1, y1, x2, y2):
     distance = math.sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
-    if distance < 27:
+    if distance < 50:
         return True
 
 needRecycle = False
@@ -86,12 +86,14 @@ speed = 1
 
 # Keeps code running forever
 while True:
-    pygame.display.set_caption(str(score))
+
     # Player input; Exit
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()  # opposite of init(); closes pygame
             exit()
+
+
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
@@ -113,11 +115,11 @@ while True:
     # anything in this while loop will be displayed to the player
     screen.blit(sky_surface, (0, 0))
     screen.blit(ground_surface, (0, 300))
-    screen.blit(text_surface, (300, 50))
     screen.blit(recyclingbin_surface, (0, 230))
     screen.blit(trashcan_surface, (700, 230))
 
-
+    scoreboard = over_font.render(("Score:" + str(score)), True, (255, 255, 255))
+    screen.blit(scoreboard, (300, 345))
 
     mojo_rect.x -= speed * 2
     if mojo_rect.right <= 0: mojo_rect.left = 800
@@ -230,6 +232,6 @@ while True:
             pygame.quit()  # opposite of init(); closes pygame
             exit()
     over_text = over_font.render("GAME OVER", True, (255, 255, 255))
-    screen.blit(over_text, (200, 200))
+    screen.blit(over_text, (200, 150))
     pygame.display.update()
     clock.tick(60)
