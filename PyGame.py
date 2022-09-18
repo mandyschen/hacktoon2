@@ -20,7 +20,7 @@ gui.play_sound('game-soundtrack')
 
 def playAgain():
     screen = pygame.display.set_mode((800, 400))
-    pygame.display.set_caption('PowerPuffs')
+    pygame.display.set_caption('Eco Puffs')
     clock = pygame.time.Clock()  # Helps with time and controlling the frame rate
     test_font = pygame.font.Font('Pixeltype.ttf', 50)
 
@@ -144,7 +144,7 @@ def playAgain():
         screen.blit(recyclingbin_surface, (0, 230))
         screen.blit(trashcan_surface, (700, 230))
 
-        scoreboard = over_font.render(("Score:" + str(score)), True, (255, 255, 255))
+        scoreboard = test_font.render(("Score:" + str(score)), True, (255, 255, 255))
         screen.blit(scoreboard, (300, 345))
 
         mojo_rect.x -= speed * 2
@@ -260,7 +260,7 @@ def playAgain():
             if event.type == pygame.QUIT:
                 pygame.quit()  # opposite of init(); closes pygame
                 exit()
-        gui.play_sound('game-over-sound')
+        # gui.play_sound('game-over-sound')
         text = test_font.render('(PRESS SPACE TO PLAY AGAIN)' , True , 'White')
         screen.blit(text, (200, 260))
         pygame.display.update()
