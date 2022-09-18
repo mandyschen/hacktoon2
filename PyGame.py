@@ -76,6 +76,8 @@ def playAgain():
 
     facingRight = True
 
+    color = 'blue'
+
     def isCollision(x1, y1, x2, y2):
         distance = math.sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
         if distance < 50:
@@ -103,8 +105,22 @@ def playAgain():
                 if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
                     if bubbles_rect.y == 195:
                         bubbles_gravity = -20
-                    elif bubbles_rect.y < 75:
+                    elif bubbles_rect.y - 20 > 10:
                         bubbles_gravity = -10
+                if event.key == pygame.K_1 and color != 'blue':
+                    bubbles_surface = pygame.image.load('./images/blue.png')
+                    bubbles_surface = pygame.transform.scale(bubbles_surface, (120, 120)).convert_alpha()
+                    color = 'blue'
+                if event.key == pygame.K_2 and color != 'red':
+                    bubbles_surface = pygame.image.load('./images/red.png')
+                    bubbles_surface = pygame.transform.scale(bubbles_surface, (70, 110)).convert_alpha()
+                    bubbles_surface = pygame.transform.flip(bubbles_surface, True, False)
+                    color = 'red'
+                if event.key == pygame.K_3 and color != 'green':
+                    bubbles_surface = pygame.image.load('./images/green.png')
+                    bubbles_surface = pygame.transform.scale(bubbles_surface, (90, 100)).convert_alpha()
+                    color = 'green'
+
                 if event.key == pygame.K_LEFT:
                     bubbles_velocity = bubbles_velocity - 5
                     if(facingRight == True):
