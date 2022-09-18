@@ -106,7 +106,7 @@ while True:
 
 
 
-    mojo_rect.x -= speed
+    mojo_rect.x -= speed * 2
     if mojo_rect.right <= 0: mojo_rect.left = 800
     screen.blit(mojo_jojo_surface, mojo_rect)
 
