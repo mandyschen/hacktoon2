@@ -20,7 +20,7 @@ gui.play_sound('game-soundtrack')
 
 def playAgain():
     screen = pygame.display.set_mode((800, 400))
-    pygame.display.set_caption('Eco Puffs')
+    pygame.display.set_caption('Eco Puffs: Mission (not) Impossible')
     clock = pygame.time.Clock()  # Helps with time and controlling the frame rate
     test_font = pygame.font.Font('Pixeltype.ttf', 50)
 
