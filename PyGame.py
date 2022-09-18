@@ -72,7 +72,6 @@ speed = 1
 
 # Keeps code running forever
 while True:
-    print(bubbles_rect.y)
     pygame.display.set_caption(str(score))
     # Player input; Exit
     for event in pygame.event.get():
@@ -84,7 +83,7 @@ while True:
             if event.key == pygame.K_SPACE:
                 if bubbles_rect.y == 195:
                     bubbles_gravity = -20
-                elif bubbles_rect.y < 50:
+                elif bubbles_rect.y < 75:
                     bubbles_gravity = -10
             if event.key == pygame.K_LEFT:
                 bubbles_velocity = bubbles_velocity - 5
@@ -132,9 +131,6 @@ while True:
         bubbles_rect.x = 700
     if bubbles_rect.bottom >= 300: bubbles_rect.bottom = 315
     screen.blit(bubbles_surface, bubbles_rect)
-
-    if bubbles_rect.colliderect(mojo_rect):
-        print('collision')
 
     if bubbles_rect.colliderect(crushed_can_rect):
         crushed_can_rect.y = 300
@@ -188,8 +184,6 @@ while True:
     if (isCollision(bubbles_rect.x, bubbles_rect.y, mojo_rect.x, mojo_rect.y)):
         clock.tick(0)
         break
-
-
 
     pygame.display.update()
     clock.tick(60) #tells the while loop to not run faster than 60
