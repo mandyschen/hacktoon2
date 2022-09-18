@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2aa12bc6-c797-4f83-9ab0-281b92e502c0" name="Changes" comment="play again feature">
-      <change afterPath="$PROJECT_DIR$/images/puffbackground.png" afterDir="false" />
+    <list default="true" id="2aa12bc6-c797-4f83-9ab0-281b92e502c0" name="Changes" comment="Menu Changes">
+      <change afterPath="$PROJECT_DIR$/images/background2puff.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/background2puff_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyGame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/powerpuffBackground.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +43,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Users/afors/OneDrive/Documents/GitHub/hacktoon2/images"
+  }
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\afors\OneDrive\Documents\GitHub\hacktoon2\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\afors\OneDrive\Documents\GitHub\hacktoon2\images" />
       <recent name="$PROJECT_DIR$/sounds" />
@@ -147,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663477060333</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Menu Changes">
+      <created>1663505394715</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1663505394715</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,6 +194,7 @@
     <MESSAGE value="play again (doesnt work)" />
     <MESSAGE value="play again feature" />
     <MESSAGE value="Character selection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Character selection" />
+    <MESSAGE value="Menu Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Menu Changes" />
   </component>
 </project>

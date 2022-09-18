@@ -271,7 +271,7 @@ while True:
     screen.blit(background_screen_surf, (0, 0))
 
     title_font = pygame.font.Font('Pixeltype.ttf', 75)
-    intro_font = pygame.font.Font('Pixeltype.ttf', 33)
+    intro_font = pygame.font.Font('Pixeltype.ttf', 35)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()  # opposite of init(); closes pygame
@@ -280,21 +280,25 @@ while True:
             if event.key == pygame.K_SPACE:
                 playAgain()
         title = title_font.render('EcoPuffs', True, 'Black')
-        screen.blit(title, (275, 10))
-        spaces ="                             "
-        spaces2 ="       "
-        spaces3 ="                                                             "
-        spaces4 ="                                                                     "
+        screen.blit(title, (295, 20))
+        spaces ="                           "
+        spaces2 ="                                         "
+        spaces3 ="                                                          "
+        spaces4 ="                                                      "
+        spaces5 ="   "
+        spaces6 ="                                                                       "
         intro1 = intro_font.render(spaces+'Blossom, Bubbles, and Buttercup are The Powerpuff Girls!', True, 'Black')
-        intro2 = intro_font.render(spaces2+'These little girls are motivated with one mission: saving the world before bedtime! ', True, 'Black')
-        intro3 = intro_font.render(spaces2+'And this time, they look outside their window to see trash polluting the town of ', True, 'Black')
+        intro2 = intro_font.render(spaces2+'These little girls are motivated with one mission,', True, 'Black')
+        intro2_5 = intro_font.render(spaces3+'SAVING THE WORLD BEFORE BEDTIME! ', True, 'Black')
+        intro3 = intro_font.render(spaces5+'And this time, they look outside their window to see trash polluting the town of ', True, 'Black')
         intro4 = intro_font.render(spaces3+'Townsville...it’s time for saving.', True, 'Black')
-        intro5 = intro_font.render(spaces4+'Press SPACE to Continue', True, 'Black')
-        screen.blit(intro1, (0, 60))
-        screen.blit(intro2, (0, 90))
-        screen.blit(intro3, (0, 120))
-        screen.blit(intro4, (0, 150))
-        screen.blit(intro5, (0, 250))
+        intro5 = intro_font.render(spaces6+'Press SPACE to Continue', True, 'Black')
+        screen.blit(intro1, (0, 80))
+        screen.blit(intro2, (0, 110))
+        screen.blit(intro2_5,(0, 160))
+        screen.blit(intro3, (0, 210))
+        screen.blit(intro4, (0, 240))
+        screen.blit(intro5, (0, 290))
         pygame.display.update()
 
 
