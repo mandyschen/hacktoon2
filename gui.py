@@ -15,10 +15,10 @@ class GameGUI:
 
     def load_sounds(self):
         self.sounds = {}
-        for sound_file in glob.glob(f".\\sounds\\*.mp3"):
+        for sound_file in glob.glob(f"./sounds/*.mp3"):
             sound = pygame.mixer.Sound(sound_file)
             self.sounds[sound_file] = sound
 
 
     def play_sound(self, sound):
-        self.sounds[f'.\\sounds\\{sound}.mp3'].play(-1)
+        self.sounds[f'./sounds/{sound}.mp3'].play(-1)
