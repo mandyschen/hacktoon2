@@ -74,6 +74,7 @@ def playAgain():
 
     score = 0
 
+    facingRight = True
 
     def isCollision(x1, y1, x2, y2):
         distance = math.sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
@@ -106,8 +107,14 @@ def playAgain():
                         bubbles_gravity = -10
                 if event.key == pygame.K_LEFT:
                     bubbles_velocity = bubbles_velocity - 5
-                if event.key == pygame.K_RIGHT:
+                    if(facingRight == True):
+                        bubbles_surface = pygame.transform.flip(bubbles_surface, True, False)
+                        facingRight = False
+                elif event.key == pygame.K_RIGHT:
                     bubbles_velocity = bubbles_velocity + 5
+                    if(facingRight == False):
+                        bubbles_surface = pygame.transform.flip(bubbles_surface, True, False)
+                        facingRight = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     bubbles_velocity = 0
