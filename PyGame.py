@@ -1,11 +1,14 @@
-import pygame, random
+import math
+
 from gui import GameGUI
-from sys import exit #exits code right after it runs
+import pygame, random
+from sys import exit  # exits code right after it runs
 
 from pygame.examples.eventlist import font
 
 # starts and initiates pygames
 pygame.init()
+
 # Load and play background soundtrack
 gui = GameGUI()
 gui.start()
@@ -54,8 +57,6 @@ over_font = pygame.font.Font('freesansbold.ttf', 64)
 
 score = 0
 
-active = True
-
 
 def isCollision(x1, y1, x2, y2):
     distance = math.sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
@@ -99,6 +100,8 @@ while True:
     screen.blit(recyclingbin_surface, (0, 230))
     screen.blit(trashcan_surface, (700, 230))
 
+
+
     mojo_rect.x -= 2
     if mojo_rect.right <= 0: mojo_rect.left = 800
     screen.blit(mojo_jojo_surface, mojo_rect)
@@ -126,8 +129,7 @@ while True:
     if bubbles_rect.bottom >= 300: bubbles_rect.bottom = 315
     screen.blit(bubbles_surface, bubbles_rect)
 
-    if bubbles_rect.colliderect(mojo_rect):
-        print('collision')
+
     if bubbles_rect.colliderect(crushed_can_rect):
         crushed_can_rect.y = 300
         needRecycle = True
@@ -153,15 +155,13 @@ while True:
             score += 1
             needCompost = False
 
-
     if (isCollision(bubbles_rect.x, bubbles_rect.y, mojo_rect.x, mojo_rect.y)):
-        active = False
         clock.tick(0)
         break
 
-    if(active):
-        pygame.display.update()
-        clock.tick(60)  # tells the while loop to not run faster than 60
+
+    pygame.display.update()
+    clock.tick(60) #tells the while loop to not run faster than 60
 
 while True:
     for event in pygame.event.get():
