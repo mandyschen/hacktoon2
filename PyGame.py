@@ -13,6 +13,7 @@ screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption('Eco Puffs: Mission (not) Impossible')
 clock = pygame.time.Clock()  # Helps with time and controlling the frame rate
 test_font = pygame.font.Font('Pixeltype.ttf', 50)
+direction_font = pygame.font.Font('Pixeltype.ttf', 30)
 
 
 # Load and play background soundtrack
@@ -151,8 +152,15 @@ def playAgain():
         screen.blit(recyclingbin_surface, (0, 230))
         screen.blit(trashcan_surface, (700, 230))
 
-        scoreboard = test_font.render(("Score:" + str(score)), True, (255, 255, 255))
-        screen.blit(scoreboard, (300, 345))
+        scoreboard = test_font.render(("Score: " + str(score)), True, (255, 255, 255))
+        screen.blit(scoreboard, (330, 345))
+
+        directions = direction_font.render('WASD/Arrow Keys to Move', True, 'White')
+        directions2 = direction_font.render('Press Space to Fly', True, 'White')
+        directions3 = direction_font.render('1/2/3 to Change Characters', True, 'White')
+        screen.blit(directions, (5, 325))
+        screen.blit(directions2, (5, 350))
+        screen.blit(directions3, (5, 375))
 
         mojo_rect.x -= speed * 2
         if mojo_rect.right <= 0: mojo_rect.left = 800
@@ -272,7 +280,7 @@ def playAgain():
         text = test_font.render('(PRESS SPACE TO PLAY AGAIN)', True, 'White')
         screen.blit(text, (200, 260))
         pygame.display.update()
-        over_text = test_font.render("GAME OVER", True, (255, 255, 255))
+        over_text = test_font.render("                        GAME OVER", True, (255, 255, 255))
         screen.blit(over_text, (200, 200))
         pygame.display.update()
         clock.tick(60)
