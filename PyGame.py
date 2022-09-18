@@ -36,7 +36,6 @@ bubbles_gravity = -15
 bubbles_velocity = 5
 
 # Recycling items
-
 crushed_can_surface = pygame.image.load('./images/crushedCan.png').convert_alpha()
 crushed_can_surface = pygame.transform.scale(crushed_can_surface, (75, 75)).convert_alpha()
 crushed_can_rect = crushed_can_surface.get_rect(midbottom = (random.randrange(50, 750), 0))
@@ -103,12 +102,20 @@ while True:
                 bubbles_velocity = bubbles_velocity - 5
             if event.key == pygame.K_RIGHT:
                 bubbles_velocity = bubbles_velocity + 5
+            if event.key == pygame.K_1:
+                bubbles_surface = pygame.image.load('./images/blue.png')
+                bubbles_surface = pygame.transform.scale(bubbles_surface, (120, 120)).convert_alpha()
+            if event.key == pygame.K_2:
+                bubbles_surface = pygame.image.load('./images/red.png')
+                bubbles_surface = pygame.transform.scale(bubbles_surface, (70, 110)).convert_alpha()
+            if event.key == pygame.K_3:
+                bubbles_surface = pygame.image.load('./images/green.png')
+                bubbles_surface = pygame.transform.scale(bubbles_surface, (90, 100)).convert_alpha()
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 bubbles_velocity = 0
             if event.key == pygame.K_RIGHT:
                 bubbles_velocity = 0
-
     # places image ontop of display surface
     # anything in this while loop will be displayed to the player
     screen.blit(sky_surface, (0, 0))
