@@ -1,3 +1,5 @@
+import math
+
 import pygame, random
 from gui import GameGUI
 from sys import exit #exits code right after it runs
@@ -6,6 +8,11 @@ from pygame.examples.eventlist import font
 
 # starts and initiates pygames
 pygame.init()
+
+# Load and play background soundtrack
+gui = GameGUI()
+gui.start()
+gui.play_sound('game-soundtrack')
 
 # Create display surface (the screen players see)
 # screen = pygame.displat.set.mode((width, height))
@@ -45,9 +52,9 @@ recyclingbin_rect = trashcan_surface.get_rect(midbottom=(800, 250))
 # Keeps code running forever
 
 # Load and play background soundtrack
-gui = GameGUI()
-gui.start()
-gui.play_sound('game-soundtrack')
+#gui = GameGUI()
+#gui.start()
+#gui.play_sound('game-soundtrack.mp3')
 
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 
@@ -60,8 +67,6 @@ def isCollision(x1, y1, x2, y2):
     distance = math.sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
     if distance < 27:
         return True
-
-
 
 #Keeps code running forever
 while True:
@@ -117,9 +122,6 @@ while True:
         bubbles_rect.x = 700
     if bubbles_rect.bottom >= 300: bubbles_rect.bottom = 315
     screen.blit(bubbles_surface, bubbles_rect)
-
-    if bubbles_rect.colliderect(mojo_rect):
-        print('collision')
 
     if bubbles_rect.colliderect(crushed_can_rect):
         score += 1
