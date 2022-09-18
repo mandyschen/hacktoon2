@@ -267,6 +267,9 @@ def playAgain():
         clock.tick(60)
 
 while True:
+    background_screen_surf = pygame.image.load('./images/puffbackground.png')
+    screen.blit(background_screen_surf, (0, 0))
+
     title_font = pygame.font.Font('Pixeltype.ttf', 75)
     intro_font = pygame.font.Font('Pixeltype.ttf', 33)
     for event in pygame.event.get():
@@ -276,13 +279,17 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 playAgain()
-        title = title_font.render('EcoPuffs', True, 'White')
-        screen.blit(title, (250, 10))
-        intro1 = intro_font.render('Blossom, Bubbles, and Buttercup are The Powerpuff Girls!', True, 'White')
-        intro2 = intro_font.render('These little girls are motivated with one mission: saving the world before bedtime! ', True, 'White')
-        intro3 = intro_font.render('And this time, they look outside their window to see trash polluting the town of ', True, 'White')
-        intro4 = intro_font.render('Townsville...it’s time for saving.', True, 'White')
-        intro5 = intro_font.render('Press SPACE to Continue', True, 'White')
+        title = title_font.render('EcoPuffs', True, 'Black')
+        screen.blit(title, (275, 10))
+        spaces ="                             "
+        spaces2 ="       "
+        spaces3 ="                                                             "
+        spaces4 ="                                                                     "
+        intro1 = intro_font.render(spaces+'Blossom, Bubbles, and Buttercup are The Powerpuff Girls!', True, 'Black')
+        intro2 = intro_font.render(spaces2+'These little girls are motivated with one mission: saving the world before bedtime! ', True, 'Black')
+        intro3 = intro_font.render(spaces2+'And this time, they look outside their window to see trash polluting the town of ', True, 'Black')
+        intro4 = intro_font.render(spaces3+'Townsville...it’s time for saving.', True, 'Black')
+        intro5 = intro_font.render(spaces4+'Press SPACE to Continue', True, 'Black')
         screen.blit(intro1, (0, 60))
         screen.blit(intro2, (0, 90))
         screen.blit(intro3, (0, 120))
