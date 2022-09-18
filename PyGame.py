@@ -67,8 +67,9 @@ def isCollision(x1, y1, x2, y2):
 needRecycle = False
 needCompost = False
 torf = False
-
-
+recycleAmount = 0
+compostAmount = 0
+speed = 1
 
 # Keeps code running forever
 while True:
@@ -103,18 +104,18 @@ while True:
 
 
 
-    mojo_rect.x -= 2
+    mojo_rect.x -= speed
     if mojo_rect.right <= 0: mojo_rect.left = 800
     screen.blit(mojo_jojo_surface, mojo_rect)
 
     # crushed can
-    crushed_can_rect.y += 2
+    crushed_can_rect.y += speed
     if crushed_can_rect.y > 300:
         crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(50, 750), 0))
     screen.blit(crushed_can_surface, crushed_can_rect)
 
     # cherry
-    cherry_rect.y += 1
+    cherry_rect.y += speed
     if cherry_rect.y > 300:
         cherry_rect = cherry_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
     screen.blit(cherry_surface, cherry_rect)
@@ -132,13 +133,16 @@ while True:
 
     if bubbles_rect.colliderect(mojo_rect):
         print('collision')
+
     if bubbles_rect.colliderect(crushed_can_rect):
         crushed_can_rect.y = 300
         needRecycle = True
+        recycleAmount += 1
 
     if bubbles_rect.colliderect(cherry_rect):
         cherry_rect.y = 300
         needCompost = True
+        compostAmount += 1
 
     if needRecycle:
         recycle_surface = test_font.render('RECYCLE', False, 'Green')
@@ -149,13 +153,34 @@ while True:
 
     if needRecycle == True:
         if bubbles_rect.colliderect(recyclingbin_rect):
-            score += 1
+            score += recycleAmount
+            recycleAmount = 0
             needRecycle = False
 
     if needCompost == True:
         if bubbles_rect.colliderect(trashcan_rect):
-            score += 1
+            score += compostAmount
+            compostAmount = 0
             needCompost = False
+
+    if score > 20:
+        speed = 2
+    elif score > 30:
+        speed = 3
+    elif score > 40:
+        speed = 4
+    elif score > 50:
+        speed = 5
+    elif score > 60:
+        speed = 6
+    elif score > 70:
+        speed = 7
+    elif score > 80:
+        speed = 8
+    elif score > 90:
+        speed = 9
+    elif score > 100:
+        speed = 10
 
 
     pygame.display.update()
