@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2aa12bc6-c797-4f83-9ab0-281b92e502c0" name="Changes" comment="play again feature">
-      <change afterPath="$PROJECT_DIR$/images/green.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/red.png" afterDir="false" />
+    <list default="true" id="2aa12bc6-c797-4f83-9ab0-281b92e502c0" name="Changes" comment="Character selection">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyGame.py" afterDir="false" />
     </list>
@@ -28,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Score_Board" />
+        <entry key="$PROJECT_DIR$" value="Character_Selection" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -137,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663470513411</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Character selection">
+      <created>1663477060333</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1663477060333</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,6 +174,7 @@
     <MESSAGE value="- changes in speed based on score" />
     <MESSAGE value="play again (doesnt work)" />
     <MESSAGE value="play again feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="play again feature" />
+    <MESSAGE value="Character selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Character selection" />
   </component>
 </project>

@@ -4,37 +4,35 @@ from gui import GameGUI
 import pygame, random
 from sys import exit  # exits code right after it runs
 
-from pygame.examples.eventlist import font
-
 # starts and initiates pygames
 pygame.init()
+
+screen = pygame.display.set_mode((800, 400))
+pygame.display.set_caption('PowerPuffs')
+clock = pygame.time.Clock()  # Helps with time and controlling the frame rate
+test_font = pygame.font.Font('Pixeltype.ttf', 50)
 
 # Load and play background soundtrack
 gui = GameGUI()
 gui.start()
 gui.play_sound('game-soundtrack')
 
-# Create display surface (the screen players see)
-# screen = pygame.displat.set.mode((width, height))
-
-
 def playAgain():
-    screen = pygame.display.set_mode((800, 400))
-    pygame.display.set_caption('PowerPuffs')
-    clock = pygame.time.Clock()  # Helps with time and controlling the frame rate
-    test_font = pygame.font.Font('Pixeltype.ttf', 50)
+
+
+    # Create display surface (the screen players see)
+    # screen = pygame.display.set.mode((width, height))
 
     sky_surface = pygame.image.load('./images/Sky.png').convert()
     ground_surface = pygame.image.load('./images/ground.png').convert()
-
 
     mojo_jojo_surface = pygame.image.load('./images/mojojojo.png')
     mojo_jojo_surface = pygame.transform.scale(mojo_jojo_surface, (120, 100)).convert_alpha()
     mojo_rect = mojo_jojo_surface.get_rect(bottomright=(600, 310))
 
     bubbles_surface = pygame.image.load('./images/blue.png')
-    bubbles_surface = pygame.transform.scale(bubbles_surface, (120,120)).convert_alpha()
-    bubbles_rect = bubbles_surface.get_rect(midbottom = (80,310))
+    bubbles_surface = pygame.transform.scale(bubbles_surface, (120, 120)).convert_alpha()
+    bubbles_rect = bubbles_surface.get_rect(midbottom=(80, 310))
     bubbles_gravity = -15
     bubbles_velocity = 5
 
@@ -42,33 +40,33 @@ def playAgain():
 
     crushed_can_surface = pygame.image.load('./images/crushedCan.png').convert_alpha()
     crushed_can_surface = pygame.transform.scale(crushed_can_surface, (75, 75)).convert_alpha()
-    crushed_can_rect = crushed_can_surface.get_rect(midbottom = (random.randrange(50, 750), 0))
+    crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(50, 750), 0))
     crushed_can_gravity = -1
 
     paper_surface = pygame.image.load('./images/paper.png').convert_alpha()
     paper_surface = pygame.transform.scale(paper_surface, (60, 60)).convert_alpha()
-    paper_rect = paper_surface.get_rect(midbottom = (random.randrange(50, 750), random.randrange(-75, -50)))
+    paper_rect = paper_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
     paper_gravity = -3
 
     # Trash items
 
     cherry_surface = pygame.image.load('./images/cherry.png').convert_alpha()
     cherry_surface = pygame.transform.scale(cherry_surface, (75, 75)).convert_alpha()
-    cherry_rect = cherry_surface.get_rect(midbottom = (random.randrange(50, 750), random.randrange(-75, -50)))
+    cherry_rect = cherry_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
     cherry_gravity = -1
 
     bananapeel_surface = pygame.image.load('./images/bananapeel.png').convert_alpha()
     bananapeel_surface = pygame.transform.scale(bananapeel_surface, (75, 75)).convert_alpha()
-    bananapeel_rect = bananapeel_surface.get_rect(midbottom = (random.randrange(50, 750), random.randrange(-75, -50)))
+    bananapeel_rect = bananapeel_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
     bananapeel_gravity = -3
 
     recyclingbin_surface = pygame.image.load('./images/recyclingbin.png').convert_alpha()
     recyclingbin_surface = pygame.transform.scale(recyclingbin_surface, (100, 100)).convert_alpha()
-    recyclingbin_rect = recyclingbin_surface.get_rect(midbottom = (0, 250))
+    recyclingbin_rect = recyclingbin_surface.get_rect(midbottom=(0, 250))
 
     trashcan_surface = pygame.image.load('./images/trashcan.png').convert_alpha()
     trashcan_surface = pygame.transform.scale(trashcan_surface, (75, 75)).convert_alpha()
-    trashcan_rect = trashcan_surface.get_rect(midbottom = (800, 250))
+    trashcan_rect = trashcan_surface.get_rect(midbottom=(800, 250))
 
     over_font = pygame.font.Font('freesansbold.ttf', 64)
 
@@ -99,8 +97,6 @@ def playAgain():
                 pygame.quit()  # opposite of init(); closes pygame
                 exit()
 
-
-
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
                     if bubbles_rect.y == 195:
@@ -110,25 +106,26 @@ def playAgain():
                 if event.key == pygame.K_1 and color != 'blue':
                     bubbles_surface = pygame.image.load('./images/blue.png')
                     bubbles_surface = pygame.transform.scale(bubbles_surface, (120, 120)).convert_alpha()
+                    facingRight = True
                     color = 'blue'
                 if event.key == pygame.K_2 and color != 'red':
                     bubbles_surface = pygame.image.load('./images/red.png')
                     bubbles_surface = pygame.transform.scale(bubbles_surface, (70, 110)).convert_alpha()
-                    bubbles_surface = pygame.transform.flip(bubbles_surface, True, False)
+                    facingRight = True
                     color = 'red'
                 if event.key == pygame.K_3 and color != 'green':
                     bubbles_surface = pygame.image.load('./images/green.png')
                     bubbles_surface = pygame.transform.scale(bubbles_surface, (90, 100)).convert_alpha()
+                    facingRight = True
                     color = 'green'
-
                 if event.key == pygame.K_LEFT:
                     bubbles_velocity = bubbles_velocity - 5
-                    if(facingRight == True):
+                    if facingRight == True:
                         bubbles_surface = pygame.transform.flip(bubbles_surface, True, False)
                         facingRight = False
-                elif event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_RIGHT:
                     bubbles_velocity = bubbles_velocity + 5
-                    if(facingRight == False):
+                    if facingRight == False:
                         bubbles_surface = pygame.transform.flip(bubbles_surface, True, False)
                         facingRight = True
             if event.type == pygame.KEYUP:
@@ -166,7 +163,8 @@ def playAgain():
         # bananapeel
         bananapeel_rect.y += 2
         if bananapeel_rect.y > 300:
-            bananapeel_rect = bananapeel_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
+            bananapeel_rect = bananapeel_surface.get_rect(
+                midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
         screen.blit(bananapeel_surface, bananapeel_rect)
 
         # paper
@@ -225,7 +223,6 @@ def playAgain():
                 compostAmount = 0
                 needCompost = False
 
-
         if score > 30:
             speed = 2
         elif score > 40:
@@ -250,7 +247,7 @@ def playAgain():
             break
 
         pygame.display.update()
-        clock.tick(60) #tells the while loop to not run faster than 60
+        clock.tick(60)  # tells the while loop to not run faster than 60
 
     while True:
         for event in pygame.event.get():
@@ -260,13 +257,31 @@ def playAgain():
             if event.type == pygame.QUIT:
                 pygame.quit()  # opposite of init(); closes pygame
                 exit()
-        text = test_font.render('(PRESS SPACE TO PLAY AGAIN)' , True , 'White')
+        text = test_font.render('(PRESS SPACE TO PLAY AGAIN)', True, 'White')
         screen.blit(text, (200, 260))
         pygame.display.update()
         over_text = test_font.render("GAME OVER", True, (255, 255, 255))
         screen.blit(over_text, (200, 200))
         pygame.display.update()
         clock.tick(60)
-       
-playAgain()
 
+while True:
+    intro_font = pygame.font.Font('Pixeltype.ttf', 33)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()  # opposite of init(); closes pygame
+            exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                playAgain()
+        intro1 = intro_font.render('Blossom, Bubbles, and Buttercup are The Powerpuff Girls!', True, 'White')
+        intro2 = intro_font.render('These little girls are motivated with one mission: saving the world before bedtime! ', True, 'White')
+        intro3 = intro_font.render('And this time, they look outside their window to see trash polluting the town of ', True, 'White')
+        intro4 = intro_font.render('Townsville...it’s time for saving.', True, 'White')
+        intro5 = intro_font.render('Press SPACE to Continue', True, 'White')
+        screen.blit(intro1, (0, 10))
+        screen.blit(intro2, (0, 40))
+        screen.blit(intro3, (0, 70))
+        screen.blit(intro4, (0, 100))
+        screen.blit(intro5, (0, 200))
+        pygame.display.update()
