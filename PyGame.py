@@ -196,10 +196,10 @@ def playAgain():
             if event.type == pygame.QUIT:
                 pygame.quit()  # opposite of init(); closes pygame
                 exit()
-        text = over_font.render('PLAY AGAIN?' , True , 'Black')
+        text = test_font.render('(PRESS SPACE TO PLAY AGAIN)' , True , 'White')
         screen.blit(text, (200, 260))
         pygame.display.update()
-        over_text = over_font.render("GAME OVER", True, (255, 255, 255))
+        over_text = test_font.render("GAME OVER", True, (255, 255, 255))
         screen.blit(over_text, (200, 200))
         pygame.display.update()
         clock.tick(60)
