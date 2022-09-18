@@ -24,7 +24,7 @@ class GameGUI:
 
 
     def play_sound(self, sound):
-        if sound == "game-soundtrack.mp3":
+        if sound == "game-soundtrack":
             self.sounds[f'.{DIR_CHAR}sounds{DIR_CHAR}{sound}.mp3'].play(-1)
         else:
             self.sounds[f'.{DIR_CHAR}sounds{DIR_CHAR}{sound}.mp3'].play()
