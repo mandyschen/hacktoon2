@@ -16,51 +16,47 @@ gui.play_sound('game-soundtrack')
 
 # Create display surface (the screen players see)
 # screen = pygame.displat.set.mode((width, height))
-screen = pygame.display.set_mode((800, 400))
-pygame.display.set_caption('PowerPuffs')
-clock = pygame.time.Clock()  # Helps with time and controlling the frame rate
-test_font = pygame.font.Font('Pixeltype.ttf', 50)
-
-sky_surface = pygame.image.load('./images/Sky.png').convert()
-ground_surface = pygame.image.load('./images/ground.png').convert()
-text_surface = test_font.render('PuffGirls', False, 'Black')
-
-mojo_jojo_surface = pygame.image.load('./images/mojojojo.png')
-mojo_jojo_surface = pygame.transform.scale(mojo_jojo_surface, (120, 100)).convert_alpha()
-mojo_rect = mojo_jojo_surface.get_rect(bottomright=(600, 310))
-
-bubbles_surface = pygame.image.load('./images/blue.png')
-bubbles_surface = pygame.transform.scale(bubbles_surface, (120,120)).convert_alpha()
-bubbles_rect = bubbles_surface.get_rect(midbottom = (80,310))
-bubbles_gravity = -15
-bubbles_velocity = 5
-
-crushed_can_surface = pygame.image.load('./images/crushedCan.png').convert_alpha()
-crushed_can_surface = pygame.transform.scale(crushed_can_surface, (75, 75)).convert_alpha()
-crushed_can_rect = crushed_can_surface.get_rect(midbottom = (random.randrange(50, 750), 0))
-crushed_can_gravity = -3
-
-cherry_surface = pygame.image.load('cherry.png').convert_alpha()
-cherry_surface = pygame.transform.scale(cherry_surface, (75, 75)).convert_alpha()
-cherry_rect = cherry_surface.get_rect(midbottom = (random.randrange(50, 750), random.randrange(-75, -50)))
-cherry_gravity = -3
-
-recyclingbin_surface = pygame.image.load('./images/recyclingbin.png').convert_alpha()
-recyclingbin_surface = pygame.transform.scale(recyclingbin_surface, (100, 100)).convert_alpha()
-recyclingbin_rect = recyclingbin_surface.get_rect(midbottom = (0, 250))
-
-trashcan_surface = pygame.image.load('./images/trashcan.png').convert_alpha()
-trashcan_surface = pygame.transform.scale(trashcan_surface, (75, 75)).convert_alpha()
-trashcan_rect = trashcan_surface.get_rect(midbottom = (800, 250))
-
-over_font = pygame.font.Font('freesansbold.ttf', 64)
 
 
 def playAgain():
+    screen = pygame.display.set_mode((800, 400))
+    pygame.display.set_caption('PowerPuffs')
+    clock = pygame.time.Clock()  # Helps with time and controlling the frame rate
+    test_font = pygame.font.Font('Pixeltype.ttf', 50)
 
-    score = 0
+    sky_surface = pygame.image.load('./images/Sky.png').convert()
+    ground_surface = pygame.image.load('./images/ground.png').convert()
+    text_surface = test_font.render('PuffGirls', False, 'Black')
 
+    mojo_jojo_surface = pygame.image.load('./images/mojojojo.png')
+    mojo_jojo_surface = pygame.transform.scale(mojo_jojo_surface, (120, 100)).convert_alpha()
+    mojo_rect = mojo_jojo_surface.get_rect(bottomright=(600, 310))
 
+    bubbles_surface = pygame.image.load('./images/blue.png')
+    bubbles_surface = pygame.transform.scale(bubbles_surface, (120, 120)).convert_alpha()
+    bubbles_rect = bubbles_surface.get_rect(midbottom=(80, 310))
+    bubbles_gravity = -15
+    bubbles_velocity = 5
+
+    crushed_can_surface = pygame.image.load('./images/crushedCan.png').convert_alpha()
+    crushed_can_surface = pygame.transform.scale(crushed_can_surface, (75, 75)).convert_alpha()
+    crushed_can_rect = crushed_can_surface.get_rect(midbottom=(random.randrange(50, 750), 0))
+    crushed_can_gravity = -3
+
+    cherry_surface = pygame.image.load('cherry.png').convert_alpha()
+    cherry_surface = pygame.transform.scale(cherry_surface, (75, 75)).convert_alpha()
+    cherry_rect = cherry_surface.get_rect(midbottom=(random.randrange(50, 750), random.randrange(-75, -50)))
+    cherry_gravity = -3
+
+    recyclingbin_surface = pygame.image.load('./images/recyclingbin.png').convert_alpha()
+    recyclingbin_surface = pygame.transform.scale(recyclingbin_surface, (100, 100)).convert_alpha()
+    recyclingbin_rect = recyclingbin_surface.get_rect(midbottom=(0, 250))
+
+    trashcan_surface = pygame.image.load('./images/trashcan.png').convert_alpha()
+    trashcan_surface = pygame.transform.scale(trashcan_surface, (75, 75)).convert_alpha()
+    trashcan_rect = trashcan_surface.get_rect(midbottom=(800, 250))
+
+    over_font = pygame.font.Font('freesansbold.ttf', 64)
     def isCollision(x1, y1, x2, y2):
         distance = math.sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
         if distance < 27:
@@ -72,6 +68,7 @@ def playAgain():
     recycleAmount = 0
     compostAmount = 0
     speed = 1
+    score = 0
 
     # Keeps code running forever
     while True:
@@ -192,17 +189,13 @@ def playAgain():
         clock.tick(60) #tells the while loop to not run faster than 60
 
     while True:
-        mouse = pygame.mouse.get_pos()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                # playAgain = False
-                pygame.quit()  # opposite of init(); closes pygame
-                # exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if 0 <= mouse[0] <= 400 and 0 <= mouse[1] <= 800:
-                    # pygame.draw.rect(screen, 'Blue', 150, 400, 250, 500)
-                    # playAgain = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
                     playAgain()
+            if event.type == pygame.QUIT:
+                pygame.quit()  # opposite of init(); closes pygame
+                exit()
         text = over_font.render('PLAY AGAIN?' , True , 'Black')
         screen.blit(text, (200, 260))
         pygame.display.update()
@@ -210,3 +203,5 @@ def playAgain():
         screen.blit(over_text, (200, 200))
         pygame.display.update()
         clock.tick(60)
+
+playAgain()
